@@ -1,58 +1,216 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Restaurant Management System – Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful API-based Restaurant Management System developed using **Laravel, PHP, MySQL, and Laravel Sanctum**. This backend provides secure authentication, role-based access control, user management, menu management, email services, and social login integration.
 
-## About Laravel
+## Technologies Used
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP
+- Laravel
+- MySQL
+- Laravel Sanctum
+- Spatie Laravel Permission
+- Laravel Socialite
+- RESTful APIs
+- Postman
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Authentication
+- User Registration and Login
+- Laravel Sanctum Token Authentication
+- Logout
+- Email Verification
+- Forgot Password
+- Reset Password
+- Google Login
+- Facebook Login
 
-## Learning Laravel
+### 2. Role-Based Access Control
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The system supports two roles:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Admin**
+- Access to the admin dashboard.
+- Manage users.
+- Create, view, update, and delete users.
+- View deleted users.
+- Restore deleted users.
+- Manage menus.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+**User**
+- Access to the user dashboard.
+- View available menus.
+- No access to user management or admin-only operations.
 
-## Agentic Development
+### 3. User Management
+- Create users.
+- View all users.
+- View individual user details.
+- Update user information.
+- Soft delete users.
+- View trashed users.
+- Restore deleted users.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 4. Menu Management
+- Create menus.
+- View all menus.
+- View individual menu details.
+- Update menu information.
+- Soft delete menus.
+- View trashed menus.
+- Restore deleted menus.
+
+### 5. Email Services
+- Welcome emails after registration.
+- Welcome emails for admin-created users.
+- Email verification notifications.
+- Password reset emails.
+
+### 6. Security
+- Sanctum API authentication.
+- Role-based API authorization.
+- Protected routes.
+- Request validation.
+- Password hashing.
+- Soft deletes.
+- OAuth authentication.
+
+## Project Installation
+
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/emashahzad/restaurant-management-backend.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Navigate to Project Directory
 
-## Contributing
+```bash
+cd restaurant-management-backend
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Install Dependencies
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Configure Environment
 
-## Security Vulnerabilities
+Create your environment file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+```
 
-## License
+For Windows, you can also create a copy of `.env.example` and rename it to `.env`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 5. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Configure Database
+
+Update the following settings in your `.env` file:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=restaurant_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Create the database named `restaurant_db` in phpMyAdmin or MySQL.
+
+### 7. Run Migrations and Seeders
+
+```bash
+php artisan migrate --seed
+```
+
+This creates the required database tables and seeds the application roles.
+
+### 8. Configure Email Services
+
+Configure your SMTP credentials in `.env` to enable welcome emails, email verification, and password reset emails.
+
+### 9. Configure Google and Facebook Login
+
+Add your OAuth credentials to `.env` and configure the callback URLs in the respective developer consoles.
+
+Never commit actual credentials or secrets to GitHub.
+
+### 10. Start Laravel Development Server
+
+```bash
+php artisan serve
+```
+
+Backend API will be available at:
+
+`http://127.0.0.1:8000`
+
+## API Authentication
+
+The project uses Laravel Sanctum for API authentication.
+
+- Register or log in to receive an authentication token.
+- Include the token in the Authorization header for protected API requests.
+
+Example:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Accept: application/json
+```
+
+## API Modules
+
+| Module | Description |
+|---|---|
+| Authentication | Register, login, logout |
+| Email Verification | Verify and resend verification |
+| Password Management | Forgot and reset password |
+| Social Login | Google and Facebook |
+| Users | User CRUD and role management |
+| Menus | Menu CRUD |
+| Trash Management | View and restore deleted records |
+
+## HTTP Status Codes
+
+| Status | Meaning |
+|---|---|
+| 200 | Successful request |
+| 201 | Resource created |
+| 401 | Unauthenticated |
+| 403 | Forbidden |
+| 404 | Resource not found |
+| 422 | Validation error |
+
+## API Testing
+
+All API endpoints can be tested using **Postman**.
+
+Make sure the Laravel server is running before sending requests.
+
+## Frontend Repository
+
+The React frontend is maintained in a separate repository:
+
+[Restaurant Management Frontend](https://github.com/emashahzad/restaurant-management-frontend)
+
+## Developer
+
+**Ema Shahzad**
+
+BS Computer Science | Full Stack Web Developer
+
+Technologies: Laravel, PHP, MySQL, React.js, JavaScript, Bootstrap, and REST APIs.
+
+---
+
+*This project was developed as a practical full-stack development project, implementing backend API development, authentication, authorization, database management, and frontend integration.*
